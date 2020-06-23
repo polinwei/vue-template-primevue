@@ -1,32 +1,67 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div :class="containerClass" @click="onWrapperClick">
+    <LayoutTopbar @menu-toggle="onMenuToggle" />
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import LayoutTopbar from "./components/layout/LayoutTopbar.vue";
+export default {
+  data() {
+    return {
+      layoutMode: "static",
+      layoutColorMode: "dark",
+      staticMenuInactive: false,
+      overlayMenuActive: false,
+      mobileMenuActive: false
+    };
+  },
+  methods: {
+    onWrapperClick() {
+      if (!this.menuClick) {
+        this.overlayMenuActive = false;
+        this.mobileMenuActive = false;
+      }
 
-#nav {
-  padding: 30px;
-}
+      this.menuClick = false;
+    },
+    onMenuToggle() {
+      this.menuClick = true;
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+      if (this.isDesktop()) {
+        if (this.layoutMode === "overlay") {
+          this.overlayMenuActive = !this.overlayMenuActive;
+        } else if (this.layoutMode === "static") {
+          this.staticMenuInactive = !this.staticMenuInactive;
+        }
+      } else {
+        this.mobileMenuActive = !this.mobileMenuActive;
+      }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+      event.preventDefault();
+    },
+    isDesktop() {
+      return window.innerWidth > 1024;
+    }
+  },
+  computed: {
+    containerClass() {
+      return [
+        "layout-wrapper",
+        {
+          "layout-overlay": this.layoutMode === "overlay",
+          "layout-static": this.layoutMode === "static",
+          "layout-static-sidebar-inactive":
+            this.staticMenuInactive && this.layoutMode === "static",
+          "layout-overlay-sidebar-active":
+            this.overlayMenuActive && this.layoutMode === "overlay",
+          "layout-mobile-sidebar-active": this.mobileMenuActive
+        }
+      ];
+    }
+  },
+  components: {
+    LayoutTopbar: LayoutTopbar
+  }
+};
+</script>
