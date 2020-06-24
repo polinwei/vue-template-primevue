@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["about"],{f820:function(a,t,e){"use strict";e.r(t);var n=function(){var a=this,t=a.$createElement,e=a._self._c||t;return e("div",{staticClass:"about"},[e("h1",[a._v("This is an about page")]),e("div",{},[e("Calendar",{attrs:{placeholder:"Popup",showIcon:!0},model:{value:a.date,callback:function(t){a.date=t},expression:"date"}})],1)])},l=[],o={data:function(){return{date:null}}},u=o,s=e("2877"),c=Object(s["a"])(u,n,l,!1,null,null,null);t["default"]=c.exports}}]);
+//# sourceMappingURL=about.62e0a3a5.js.map
