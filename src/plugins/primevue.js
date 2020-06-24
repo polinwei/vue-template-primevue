@@ -61,9 +61,9 @@ import TreeTable from 'primevue/treetable';
 import TriStateCheckbox from 'primevue/tristatecheckbox';
 
 
-import 'primevue/resources/themes/saga-blue/theme.css'       //theme
-import 'primevue/resources/primevue.min.css'                 //core css
-import 'primeicons/primeicons.css'                           //icons
+import 'primevue/resources/themes/saga-blue/theme.css';       //theme
+import 'primevue/resources/primevue.min.css';                 //core css
+import 'primeicons/primeicons.css';                           //icons
 import 'primeflex/primeflex.css';
 import 'prismjs/themes/prism-coy.css';
 import '@fullcalendar/common/main.css'
@@ -73,8 +73,6 @@ import '@fullcalendar/timegrid/main.css';
 
 Vue.use(ToastService);
 Vue.directive('tooltip', Tooltip);
-
-Vue.config.productionTip = false;
 
 Vue.component('Accordion', Accordion);
 Vue.component('AccordionTab', AccordionTab);
