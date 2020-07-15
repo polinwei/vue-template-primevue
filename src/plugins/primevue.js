@@ -66,7 +66,9 @@ import 'primevue/resources/primevue.min.css';                 //core css
 import 'primeicons/primeicons.css';                           //icons
 import 'primeflex/primeflex.css';
 import 'prismjs/themes/prism-coy.css';
-
+import '@fullcalendar/core/main.min.css';
+import '@fullcalendar/daygrid/main.min.css';
+import '@fullcalendar/timegrid/main.min.css';
                         
 Vue.prototype.$primevue = {ripple: true};
 Vue.use(ToastService);

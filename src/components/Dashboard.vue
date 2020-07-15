@@ -53,26 +53,85 @@
 		</div>
 	</div>
 
+	<div class="p-col-12 p-lg-6 contacts">
+		<Panel header="Contacts">
+			<ul>
+				<li>
+					<button class="p-link">
+						<img src="assets/layout/images/avatar_1.png" width="35" alt="avatar1"/>
+						<span class="name">Claire Williams</span>
+						<span class="email">clare@pf-sigma.com</span>
+					</button>
+				</li>
+				<li>
+					<button class="p-link">
+						<img src="assets/layout/images/avatar_2.png" width="35" alt="avatar2"/>
+						<span class="name">Jason Dourne</span>
+						<span class="email">jason@pf-sigma.com</span>
+					</button>
+				</li>
+				<li>
+					<button class="p-link">
+						<img src="assets/layout/images/avatar_3.png" width="35" alt="avatar3"/>
+						<span class="name">Jane Davidson</span>
+						<span class="email">jane@pf-sigma.com</span>
+					</button>
+				</li>
+				<li>
+					<button class="p-link">
+						<img src="assets/layout/images/avatar_4.png" width="35" alt="avatar4"/>
+						<span class="name">Tony Corleone</span>
+						<span class="email">tony@pf-sigma.com</span>
+					</button>
+				</li>
+			</ul>
+		</Panel>
+	</div>
+
+	<div class="p-col-12 p-lg-12">
+		<Panel header="Calendar" style="height: 100%">			
+			<FullCalendar :events="events" :options="options" />
+		</Panel>
+	</div>
+
 
 </div>
 </template>
 
 <script>
 import CarService from '../services/CarService';
+import EventService from '../services/EventService';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
 
 export default {
   data() {
 		return {
 			dataTableCars: null,
 			dataTableSelectedCar: null,
+			events: null,
+			options: {
+				plugins:[dayGridPlugin, timeGridPlugin, interactionPlugin],
+				defaultDate: '2019-01-01',
+				header: {
+					left: 'prev,next',
+					center: 'title',
+					right: 'dayGridMonth,timeGridWeek,timeGridDay'
+				},
+				editable: true
+			},
 		}
 	},
-	carService: null,	
+	carService: null,
+	eventService: null,	
 	created() {
 		this.carService = new CarService();
+		this.eventService = new EventService();
 	},
 	mounted() {
-		this.carService.getCarsSmall().then(data => this.dataTableCars = data);		
+		this.carService.getCarsSmall().then(data => this.dataTableCars = data);	
+		this.eventService.getEvents().then(data => this.events = data);	
 	}
 	
 }
