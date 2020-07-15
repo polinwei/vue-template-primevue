@@ -59,6 +59,12 @@
 			"year": 2013,
 			"color": "Red",
 			"vin": "245t2s"
+		},
+		{
+			"brand": "Honda",
+			"year": 2020,
+			"color": "White",
+			"vin": "CRV5"
 		}
 	]
 }
