@@ -26,7 +26,9 @@
 import LayoutTopbar from './components/layout/LayoutTopbar.vue';
 import LayoutProfile from './components/layout/LayoutProfile.vue';
 import LayoutMenu from './components/layout/LayoutMenu.vue'
+
 export default {
+  menuService: null,
   data() {
     return {
       layoutMode: "static",
@@ -51,7 +53,7 @@ export default {
                       {label: 'Light', icon: 'pi pi-fw pi-bars',  command: () => this.layoutColorMode = 'light' }
                   ]
               },
-      ]
+      ],
     };
   },
   methods: {
